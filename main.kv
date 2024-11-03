@@ -1,0 +1,2494 @@
+WindowManager:
+    MainWindow:
+    WIfiWindow:
+    ChandelierWindow:
+    LibraryWindow:
+    SconeWindow:
+    MapWindow:
+    Welcome:
+    AccountInfoWindow:
+    ServerConnectionWindow:
+    BackgroundThemeWindow:
+    AboutWindow:
+    ContactUsWindow:
+    SecretWindow:
+<MainWIndow>:
+    name: "Main Window"
+    spacing: 20
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDFloatLayout:
+        cols:1
+        orientation: "tb-lr"
+
+#        spacing: dp(0)
+
+        MDIconButton:
+            id: menu_caller
+            icon: "home-map-marker"
+            #font_size: 80
+            theme_text_color: "Custom"
+            text_color: "white"
+            on_release: app.root.current = "Map View"
+            pos_hint: {'center_x': 0.05, 'top': 1}
+
+        MDIconButton:
+            id: menu_caller
+            icon: "cog"
+            #font_size: 80
+            theme_text_color: "Custom"
+            text_color: "white"
+#            on_release: app.root.current = "Settings Page"
+            on_release: nav_drawer.set_state("open")
+            pos_hint: {'center_x': 0.95, 'top': 1}
+
+
+
+
+
+        #changed this to float from gridlayout
+        MDFloatLayout:
+            size_hint_y: 0.3  # Takes up 30% of the height
+            pos_hint: {'center_x':0.5, "top":0.93}
+
+            MDLabel:
+                text: "Welcome Home, Asher!"
+                font_style: "H5"
+                font_size: sp(24)
+                theme_text_color: "Custom"
+                text_color: "white"
+
+                pos_hint: {'center_x': 0.57, 'center_y': 0.97} # Center within MDFloatLayout
+
+
+
+            MDIcon:
+                icon: "home"
+                font_size: dp(55)
+                theme_text_color: "Custom"
+                text_color: "white"
+                pos_hint: {'center_x': 0.84, 'center_y': 0.97}  # Adjust for icon position
+
+
+            MDLabel:
+                theme_text_color: "Custom"
+                text_color: app.text_color_secondary
+                font_size: sp(12)
+                font_style: "Body2"
+                text: " Protect Your Home With Only One Click "
+                pos_hint: {'center_x': 0.57, 'center_y': 0.85}
+
+
+
+        MDGridLayout:
+            cols:1
+            size_hint: 0.9, 0.05
+            pos_hint:{'center_x':0.5, 'top':0.85}
+            padding: dp(10), dp(0), dp(10), dp(0)
+            MDCard:
+#                size_hint: 0.3, 0.2
+#                size:  dp(350), dp(40)
+                md_bg_color: app.background_primary_color
+                ScrollView:
+                    do_scroll_y: False
+                    do_scroll_x: True
+                    MDGridLayout:
+                        cols: 7
+                        size_hint_x: None
+                        width: self.minimum_width
+
+
+
+                        MDFlatButton:
+                            text: "Lights"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_secondary
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_x: None
+                            width: dp(140)
+                            md_bg_color: 0, 0, 0, 0 # transparent background
+                            on_release: scroll_view.scroll_to(chandelier_button)
+                        MDFlatButton:
+                            text: "Cameras"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_secondary
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_x: None
+                            width: dp(140)
+                            md_bg_color: 0, 0, 0, 0 # transparent background
+                            on_release: scroll_view.scroll_to(nest_button)
+
+
+
+                        MDFlatButton:
+                            text: "Garages"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_secondary
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_x: None
+                            width: dp(140)
+                            md_bg_color: 0, 0, 0, 0 # transparent background
+                            on_release: scroll_view.scroll_to(second_Garage_Door)
+
+                        MDFlatButton:
+                            text: "Wifi"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_secondary
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_x: None
+                            width: dp(140)
+                            md_bg_color: 0, 0, 0, 0 # transparent background
+                            on_release: scroll_view.scroll_to(wifi_button)
+                        MDFlatButton:
+                            text: "Door Sensors"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_secondary
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_x: None
+                            width: dp(140)
+                            md_bg_color: 0, 0, 0, 0 # transparent background
+                            on_release: scroll_view.scroll_to(second_Garage_Door)
+                        MDFlatButton:
+                            text: "Window Sensors"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_secondary
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_x: None
+                            width: dp(140)
+                            md_bg_color: 0, 0, 0, 0 # transparent background
+                            on_release: scroll_view.scroll_to(second_Garage_Door)
+    ScrollView:
+        name: "main_scroll"
+        id: scroll_view
+        do_scroll_y: True
+        size_hint_y:0.8
+        size_hint: 0.99, 0.79
+        MDGridLayout:
+            cols:1
+            orientation: "tb-lr"
+            size_hint_y: None
+            size_hint_x: 1
+            height: self.minimum_height
+            spacing: dp(10)
+            MDGridLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                cols: 2
+                padding: [dp(20), dp(40), dp(20), dp(20)]
+                spacing: dp(15)
+
+                MDCard:
+                    id: chandelier_button
+                    on_press: print("chandelier")
+                    on_touch_down: app.check_double_tap(self, args[1])
+#                    size_hint: 0.9, 0.9
+                    md_bg_color: app.primary_color
+                    #this is the orignal code for the size of this widget
+#                    size_hint: None, None
+#                    size: dp(166), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+#                    size_hint_min_x: 0.25
+
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "chandelier"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(35)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+                            text: "Chandelier"
+                            halign: "center"
+                            font_style: "H6"
+
+
+
+
+
+
+                MDCard:
+                    id: scone_button
+                    on_press: print("Scone Lights")
+                    on_touch_down: app.check_double_tap_scone(self, args[1])
+                    md_bg_color: app.primary_color
+#                    size_hint: 1, 0.3
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+#                    size_hint_min_x: 0.25
+                    #these are the orignal size and pos for this widget below
+#                    size_hint: None, None
+                    #size: dp(166), dp(125)
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "wall-sconce"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(35)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+                            text: "Scone Lights"
+                            halign: "center"
+                            font_style: "H6"
+
+                MDCard:
+                    id: driveway_button
+                    on_press: print("Driveway Lights")
+
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(140)
+                    size_hint: (0.25, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "post-lamp"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+
+                            #---------------------------------------------------------
+                            text_color: app.text_color_primaryy
+                            #app.text_color_primaryy
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(60)
+                            text: "Driveway Lights"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+                MDCard:
+                    id: scone_button
+                    on_press: print("Front Round Room Lights")
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(140)
+                    size_hint: (0.25, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "light-recessed"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                            #app.text_color_primaryy
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(60)
+                            text: "Front Round Room"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+                MDCard:
+                    id: Carriage Lights
+                    on_press: print("Carriage Lights")
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(140)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "coach-lamp"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(55)
+                            text: "Carriage Lights"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+
+                MDCard:
+                    id: Library Lights
+                    on_press: print("Library Lights")
+                    on_touch_down: app.check_double_tap_library(self, args[1])
+                    md_bg_color: app.secondary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(130)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    pos_hint: {'center_y': 0.5}
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "wall-sconce"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: "gold"
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(40)
+                            text: "Library Lights"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_secondary
+                MDCard:
+                    id: Front Door Lights
+                    on_press: print("Front Door Lights")
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(140)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "coach-lamp"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(60)
+                            text: "Front Door Lights"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+                MDCard:
+                    id: Garage FLood Lights
+                    on_press: print("Garage Flood Lights")
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(140)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    pos_hint: {'center_y': 0.5}
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "light-flood-down"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(60)
+                            text: "Garage Flood Light"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+                MDCard:
+                    id: Backyard Flood Lights
+                    on_press: print("Backyard Flood Lights")
+                    md_bg_color: app.secondary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(140)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    pos_hint: {'center_y': 0.5}
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "light-flood-down"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_secondary
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(60)
+                            text: "Backyard Flood Lights"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_secondary
+            #used as a break so there can be spacing between the different sections
+            MDGridLayout:
+                cols:1
+                padding: dp(5)
+
+            #next section starts for the garage doors
+            MDGridLayout:
+                cols: 1
+                orientation: "tb-lr"
+                padding: [dp(20), dp(0), dp(20), dp(0)]
+                adaptive_height: True
+                spacing: dp(15)
+
+
+                MDCard:
+                    id: Main_Garage_Door
+                    on_release: print("main garage")
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(330), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+
+
+
+                    MDGridLayout:
+                        cols: 2
+                        orientation: "tb-lr"
+                        padding: [dp(5), dp(10), dp(5), dp(10)]
+
+
+                        MDIcon:
+                            icon: "garage-variant"
+                            size_hint_y: None
+                            font_size: 100
+                            height:dp(40)
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+
+                        MDLabel:
+                            text: "Main Garage Door"
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_y: None
+                            height: dp(60)
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+
+                MDCard:
+                    id: second_Garage_Door
+                    on_release: print("second garage")
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(330), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+
+
+
+                    MDGridLayout:
+                        cols: 2
+                        orientation: "tb-lr"
+                        padding: [dp(5), dp(10), dp(5), dp(10)]
+
+
+                        MDIcon:
+
+                            icon: "garage-open-variant"
+                            size_hint_y: None
+                            font_size: 100
+                            height:dp(40)
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+
+                        MDLabel:
+                            text: "Secondary Garage Door"
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_y: None
+                            height: dp(60)
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+
+            MDGridLayout:
+                size_hint_y: None
+                height: self.minimum_height
+                cols: 2
+                padding: [dp(20), dp(40), dp(20), dp(20)]
+                spacing: dp(15)
+
+                MDCard:
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "cctv"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(35)
+                            text: "Kasa"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+                MDCard:
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "cctv"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(35)
+                            text: "Blink"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+
+
+
+                MDCard:
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "cctv"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(35)
+                            text: "Wyze"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+                MDCard:
+                    id: nest_button
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(166), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+                    MDGridLayout:
+                        cols: 1
+                        orientation: "tb-lr"
+
+
+                        MDIcon:
+                            icon: "cctv"
+                            size_hint_y: None
+                            font_size: 60
+                            height:dp(20)
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+                        MDLabel:
+                            size_hint_y: None
+                            height: dp(35)
+                            text: "Nest"
+                            halign: "center"
+                            font_style: "H6"
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+
+            MDGridLayout:
+                cols: 1
+                orientation: "tb-lr"
+                padding: [dp(20), dp(0), dp(20), dp(20)]
+                adaptive_height: True
+                spacing: dp(15)
+
+
+                MDCard:
+                    id: wifi_button
+                    on_release: print("Google Wifi")
+                    on_release: app.root.current = "Wifi Window"
+                    md_bg_color: app.primary_color
+#                    size_hint: None, None
+#                    size: dp(330), dp(125)
+                    size_hint: (0.50, None)  # Width is 45% of the available width
+                    height: dp(140)  # Set height to be equal to width for proportionality
+                    radius:70
+                    padding: 30
+
+
+
+                    MDGridLayout:
+                        cols: 2
+                        orientation: "tb-lr"
+                        padding: [dp(5), dp(10), dp(5), dp(10)]
+
+
+                        MDIcon:
+                            icon: "router-wireless"
+                            size_hint_y: None
+                            font_size: 100
+                            height:dp(40)
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: app.text_color_primaryy
+
+
+                        MDLabel:
+                            text: "Google Wifi"
+                            font_style: "H6"
+                            halign: "center"
+                            size_hint_y: None
+                            height: dp(60)
+                            theme_text_color: "Custom"
+                            text_color : app.text_color_primaryy
+    MDNavigationDrawer:
+        id: nav_drawer
+        md_bg_color: app.secondary_color
+        radius: (0, 16, 16, 0)
+
+        MDNavigationDrawerMenu:
+
+            MDNavigationDrawerLabel:
+                text: 'Settings'
+                font_style: 'H6'
+                theme_text_color: "Custom"
+                text_color_normal: 1, 1, 1, 1
+
+
+
+            MDNavigationDrawerItem:
+                icon: 'account-circle-outline'
+                text: "Account"
+                on_release: app.root.current = "Account Info Page"
+#                on_release: app.root.current = "Map View"
+            MDNavigationDrawerDivider:
+
+            MDNavigationDrawerItem:
+                icon: 'shape-outline'
+                text: "Theme Packs"
+                on_release: app.root.current = "Background Page"
+
+            MDNavigationDrawerDivider:
+
+            MDNavigationDrawerItem:
+                icon: 'server-network'
+                text: "Server Connection"
+                on_release: app.root.current = 'Server Connection Page'
+
+            MDNavigationDrawerDivider:
+
+
+            MDNavigationDrawerItem:
+                text: 'Contact Us'
+                icon: 'contacts-outline'
+                on_release: app.root.current = 'Contact Us Page'
+            MDNavigationDrawerDivider:
+
+
+
+
+
+
+
+
+
+
+
+#            spacing: "8dp"
+#            padding: "8dp"
+#            canvas.before:
+#                Color:
+#                    rgba: 5/255, 17/255, 57/255, 1
+#                Rectangle:
+#                    pos: self.pos
+#                    size: self.size
+
+#            MDLabel:
+#                text: "Navigation Drawer"
+#                font_style: "H5"
+#                size_hint_y: None
+#                height: self.texture_size[1]
+#
+#            MDRectangleFlatButton:
+#                text: "Go to Settings"
+#                on_release:
+#                    screen_manager.current = "settings"
+#                    nav_drawer.set_state("close")
+
+
+
+
+<WifiWindow>:
+    name: "Wifi Window"
+    MDGridLayout:
+
+
+
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    MDGridLayout:
+        cols: 1
+        MDIconButton:
+            icon: "arrow-left-circle"
+            font_size: dp(80)
+            theme_text_color: "Custom"
+            text_color: "white"
+            on_release: app.root.current = "Main Window"
+            on_release: print("worked")
+        ScrollView:
+            MDGridLayout:
+                cols:1
+                spacing: dp(10)
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDLabel:
+                    size_hint_y: None
+                    text: "Network Info"
+                    font_style: "H3"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+
+                MDLabel:
+                    size_hint_y: None
+                    text: "Network Name (ssid):"
+                    font_style: "H5"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    height: dp(5)
+                    text: "Main"
+                    font_style: "Body1"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Network password:"
+                    font_style: "H5"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Mgm11235"
+                    font_style: "Body1"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+
+                MDLabel:
+                    size_hint_y: None
+                    text: "IP Address:"
+                    font_style: "H5"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Wan Ip: \n\n 101.188.67.134"
+                    font_style: "Body1"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Lan Ip: \n\n 192.168.86.26"
+                    font_style: "Body1"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Router Info"
+                    font_style: "H3"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Wifi Points:"
+                    font_style: "H5"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Family Room Point \n\n Model: NLS-1304-25 "
+                    font_style: "Body1"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+                MDLabel:
+                    size_hint_y: None
+                    text: "Game Room Point \n\n Model: NLS-1304-25"
+                    font_style: "Body1"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color : app.text_color_primaryy
+
+<ChandelierWindow>:
+    name: "Chandelier Window"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    MDGridLayout:
+        cols: 1
+        MDIconButton:
+            icon: "arrow-left-circle"
+            font_size: dp(80)
+            theme_text_color: "Custom"
+            text_color: "white"
+            on_release: app.root.current = "Main Window"
+            on_release: print("worked")
+    MDGridLayout:
+        cols: 1
+        padding: dp(120)
+        MDLabel:
+            size_hint_y:None
+            height: dp(5)
+            text: "Chandelier Dimmer\n\n"
+            halign: "center"
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color : app.text_color_primaryy
+        MDSlider:
+            orientation: "vertical"
+            cursor_width: dp(60)
+            size_hint_y: None
+            height: dp(600)
+
+
+
+<LibraryWindow>:
+    name: "Library Window"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    MDGridLayout:
+        cols: 1
+        MDIconButton:
+            icon: "arrow-left-circle"
+            font_size: dp(80)
+            theme_text_color: "Custom"
+            text_color: "white"
+            on_release: app.root.current = "Main Window"
+            on_release: print("worked")
+    MDGridLayout:
+        cols: 1
+        padding: dp(120)
+        MDLabel:
+            size_hint_y:None
+            height: dp(5)
+            text: "Library Room Dimmer\n\n"
+            halign: "center"
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color : app.text_color_primaryy
+        MDSlider:
+            orientation: "vertical"
+            cursor_width: dp(60)
+            size_hint_y: None
+            height: dp(600)
+<SconeWindow>:
+    name: "Scone Window"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    MDGridLayout:
+        cols: 1
+        MDIconButton:
+            icon: "arrow-left-circle"
+            font_size: dp(80)
+            theme_text_color: "Custom"
+            text_color: "white"
+            on_release: app.root.current = "Main Window"
+            on_release: print("worked")
+    MDGridLayout:
+        cols: 1
+        padding: dp(120)
+        MDLabel:
+            size_hint_y:None
+            height: dp(5)
+            text: "Scone Lights Dimmer\n\n"
+            halign: "center"
+            font_style: "H6"
+            theme_text_color: "Custom"
+            text_color : app.text_color_primaryy
+        MDSlider:
+            orientation: "vertical"
+            cursor_width: dp(60)
+            size_hint_y: None
+            height: dp(600)
+<Welcome>:
+    name: "welcome_page"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: 5/255, 17/255, 57/255, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    MDGridLayout:
+        cols: 1
+        padding:dp(0), dp(0), dp(0), dp(300)
+        spacing:dp(10)
+        MDLabel:
+            text: "Please Select Iphone Type"
+            theme_text_color:"Custom"
+            text_color:"white"
+            halign:"center"
+        MDFlatButton:
+            text:"Iphone 15"
+            theme_text_color:"Custom"
+            text_color:"white"
+            size_hint_y:0.0
+            size_hint_x: 0.5
+            on_release: app.set_device("iphone15")
+        MDFlatButton:
+            text:"Iphone 15 pro max"
+            theme_text_color:"Custom"
+            text_color:"white"
+            size_hint_y:0.0
+            size_hint_x: 0.5
+            on_release: app.set_device("iphone15promax")
+        MDFlatButton:
+            text:"Iphone 15 plus"
+            theme_text_color:"Custom"
+            text_color:"white"
+            size_hint_y:0.0
+            size_hint_x: 0.5
+            on_release: app.set_device("iphone15plus")
+        MDFlatButton:
+            text:"Iphone XR"
+            theme_text_color:"Custom"
+            text_color:"white"
+            size_hint_y:0.0
+            size_hint_x: 0.5
+            on_release: app.set_device("iphone15plus")
+
+
+<MapWindow>:
+    name: "Map View"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: 145/255, 185/255, 223/255, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    MDGridLayout:
+        cols: 1
+        MDIconButton:
+            icon: "arrow-left-circle"
+            font_size: dp(80)
+            theme_text_color: "Custom"
+            text_color: "white"
+            on_release: app.root.current = "Main Window"
+            on_release: print("worked")
+
+    MDFloatLayout:
+        on_touch_down:  app.handle_click(*args)
+
+
+
+        FitImage:
+            id:floor_plan
+            source: "Main Floor Drawing 3.png"
+            size_hint: None, None
+            width: min(self.parent.width, self.parent.height * (651 / 810))
+            height: min(self.parent.height, self.parent.width * (1013 / 650))
+            allow_stretch: True
+            keep_ratio: True
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}  # Center it on the screen
+
+    Widget:
+
+        canvas:
+
+
+            Color:
+                rgba: 1, 0, 0, 1  # Adjust color as needed
+            Line:
+                points: (floor_plan.x + (app.rel_x1 * floor_plan.width),floor_plan.y + (app.rel_y1 * floor_plan.height),floor_plan.x + (app.rel_x2 * floor_plan.width),floor_plan.y + (app.rel_y2 * floor_plan.height))
+
+                width: 8
+
+
+
+#        MDCard:
+#            id: main_floor_marking
+#            size_hint_y: 1
+#            size_hint_x: 1
+#            #size: dp(384), dp(600)
+#            orientation: "vertical"
+#            md_bg_color:145/255, 185/255, 223/255, 1
+#            on_touch_down: app.handle_click(*args)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#            brw : (1, 0, 0, 1)
+#            sw : (1, 0, 0, 1)
+#            w3 : (1, 0, 0, 1)
+#            fpw : (1, 0, 0, 1)
+#            lw : (1, 0, 0, 1)
+#            kw : (1, 0, 0, 1)
+#            guestw : (1, 0, 0, 1)
+#            w7 : (0, 1, 0, 1)
+#
+#
+#            boned: (1, 0, 0, 1)
+#            btwod: (1, 0, 0, 1)
+#            kd: (1, 0, 0, 1)
+#            ld: (1, 0, 0, 1)
+#            sd: (1, 0, 0, 1)
+#            d6: (1, 0, 0, 1)
+#
+#
+#            # Lines For Windows
+#
+#            canvas:
+#
+#                Color:
+#                    rgba: self.brw
+#                Line:
+#                    points: 115, 2142, 187, 2142
+#                    width:8
+#
+#                Color:
+#                    rgba: self.brw
+#                Line:
+#                    points: 293, 2142, 362, 2142
+#                    width:8
+#
+#                Color:
+#                    rgba: self.brw
+#                Line:
+#                    points: 476, 2142, 540, 2142
+#                    width:8
+#
+#                Color:
+#                    rgba: self.sw
+#                Line:
+#                    points: 699, 2142, 760, 2142
+#                    width:8
+#
+#                Color:
+#                    rgba: self.sw
+#                Line:
+#                    points: 836, 2040, 836, 2088
+#                    width:8
+#
+#                Color:
+#                    rgba: self.sw
+#                Line:
+#                    points: 836, 1948, 836, 1995
+#                    width:8
+#
+#                Color:
+#                    rgba: self.sw
+#                Line:
+#                    points: 836, 1865, 836, 1911
+#                    width:8
+#
+#                Color:
+#                    rgba: self.sw
+#                Line:
+#                    points: 836, 1772, 836, 1823
+#                    width:8
+#
+#                Color:
+#                    rgba: self.brw
+#                Line:
+#                    points: 26, 1809, 26, 1881
+#                    width:8
+#                Color:
+#                    rgba: self.brw
+#                Line:
+#                    points: 26, 1975, 26, 2039
+#                    width:8
+#                Color:
+#                    rgba: self.guestw
+#                Line:
+#                    points: 181, 1587, 181, 1665
+#                    width:8
+#                Color:
+#                    rgba: self.w7
+#                Line:
+#                    points: 181, 1337, 181, 1416
+#                    width:8
+#                Color:
+#                    rgba: self.w7
+#                Line:
+#                    points: 181, 1165, 181, 1246
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 181, 755, 181,827
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 114, 732, 82, 712
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 32, 637, 48, 669
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 19, 552, 19, 588
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 49, 466, 31, 503
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 115, 410, 80, 432
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 195, 387, 160, 391
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 275, 401, 239, 390
+#                    width:8
+#                Color:
+#                    rgba: self.lw
+#                Line:
+#                    points: 315, 421, 345, 447
+#                    width:8
+#                Color:
+#                    rgba: self.fpw
+#                Line:
+#                    points: 521, 546, 550, 546
+#                    width:8
+#                Color:
+#                    rgba: self.fpw
+#                Line:
+#                    points: 732, 546, 763, 546
+#                    width:8
+#                Color:
+#                    rgba: self.kw
+#                Line:
+#                    points: 859, 1174, 936, 1174
+#                    width:8
+#                Color:
+#                    rgba: self.kw
+#                Line:
+#                    points: 1022, 1160, 1058, 1167
+#                    width:8
+#                Color:
+#                    rgba: self.kw
+#                Line:
+#                    points: 1092, 1186, 1118, 1211
+#                    width:8
+#                Color:
+#                    rgba: self.kw
+#                Line:
+#                    points: 1136, 1237, 1146, 1275
+#                    width:8
+#                Color:
+#                    rgba: self.kw
+#                Line:
+#                    points: 1150, 1309, 1139, 1347
+#                    width:8
+#                Color:
+#                    rgba: self.kw
+#                Line:
+#                    points: 1127, 1371, 1098, 1400
+#                    width:8
+#                Color:
+#                    rgba: self.kw
+#                Line:
+#                    points: 1075, 1419, 1035, 1431
+#                    width:8
+#
+#
+#
+#
+#                # Door Sensors
+#            #Door Start
+#                Color:
+#                    rgba: self.boned
+#                Line:
+#                    points: 799, 642, 736, 642
+#                    width:8
+#                Color:
+#                    rgba: self.boned
+#                Line:
+#                    points: 801, 753, 739, 753
+#                    width:8
+#            #Door End
+#
+#            #Door Start
+#                Color:
+#                    rgba: self.btwod
+#                Line:
+#                    points: 738, 959, 801, 960
+#                    width:8
+#                Color:
+#                    rgba: self.btwod
+#                Line:
+#                    points: 738, 1069, 800, 1068
+#                    width:8
+#            #Door End
+#
+#
+#            #Door Start
+#            #Front Door
+#                Color:
+#                    rgba: 0,1,0,1
+#                Line:
+#                    points: 255, 929, 169, 927
+#                    width:8
+#                Color:
+#                    rgba: 0,1,0,1
+#                Line:
+#                    points: 254, 1073, 171, 1073
+#                    width:8
+#            #Door End
+#
+#
+#            #Door Start
+#            #kitchen door
+#                Color:
+#                    rgba: self.kd
+#                Line:
+#                    points: 850, 1363, 850, 1433
+#                    width:8
+#                Color:
+#                    rgba: self.kd
+#                Line:
+#                    points: 956, 1433, 956, 1365
+#                    width:8
+#            #Door End
+#
+#            #Door Start
+#                #laundry
+#                Color:
+#                    rgba: self.ld
+#                Line:
+#                    points: 648, 1597, 588, 1595
+#                    width:8
+#
+#            #Door End
+#
+#            #Door Start
+#            #sunroom
+#                Color:
+#                    rgba: self.sd
+#                Line:
+#                    points: 683, 1742 , 683, 1675
+#                    width:8
+#                Color:
+#                    rgba: self.sd
+#                Line:
+#                    points: 791, 1741, 791, 1680
+#                    width:8
+#            #Door End
+
+#            size_hint_y: None
+#            size_hint_x: None
+#            #size: dp(384), dp(600)
+#            orientation: "horizontal"
+#            md_bg_color:145/255, 185/255, 223/255, 1
+#            on_touch_down: app.handle_click(*args)
+
+
+#            FitImage:
+#                source: "Main Floor Drawing 3.png"
+#                size_hint: 1, 1
+#                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+#                #size: dp(650), dp(810)
+#                allow_stretch: True
+#                keep_ratio: True
+
+#    MDFloatLayout:
+#        # Used For The Lights Buttons
+#
+#
+#        MDIconButton:
+#            id : front_round_room_lights
+#            icon: "light-recessed"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 80
+#            pos:81, 205
+#            pos: 144 - self.width / 2, 261 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            #md_bg_color: (1, 1, 0.5, 1)
+#        MDIconButton:
+#            id: library_light_button
+#            icon: "wall-sconce"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 50
+#            pos:167, 521
+#            pos: 202 - self.width / 2, 581 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#        MDIconButton:
+#            id: backyard_flood_button
+#            icon: "light-flood-down"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 70
+#            pos: 887 - self.width / 2, 702 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#        MDIconButton:
+#            id: backyard_flood_light_button_2
+#            icon: "light-flood-down"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 70
+#            pos: 743 - self.width / 2, 1561 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#
+#
+#        MDIconButton:
+#            id: chandelier_button
+#            icon: "chandelier"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 50
+#            pos: 366 - self.width / 2, 1000 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#        MDIconButton:
+#            id: front_door_button
+#            icon: "coach-lamp-variant"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 50
+#            pos: 100 - self.width / 2, 1001 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (1.0, 0.9569, 0.898, 1)
+#
+#        MDIconButton:
+#            id: front_flood_button
+#            icon: "light-flood-down"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 50
+#            pos: 100 - self.width / 2, 1289 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#
+#        MDIconButton:
+#            id: slope_light_button
+#
+#            icon: "coach-lamp"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 50
+#            pos: 100 - self.width / 2, 1603 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#        MDIconButton:
+#            id: outside_kitchen_button
+#            icon: "light-recessed"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 50
+#            pos: 1075 - self.width / 2, 1077 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#
+#
+#        MDIconButton:
+#            id: scone_button_r
+#            icon: "wall-sconce-round"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 50
+#            pos: 404 - self.width / 2, 717 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#
+#        MDIconButton:
+#            id: garage_flood_light_button
+#            icon: "light-flood-down"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 80
+#            pos: 219 - self.width / 2, 2273 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+#
+#        MDIconButton:
+#            id: garage_carrage_light_button_1
+#            icon: "coach-lamp"
+#            user_font_size: "64sp"
+#            theme_font_size: "Custom"
+#            icon_size: 80
+#
+#            pos: 532 - self.width / 2, 2273 - self.height / 2
+#            theme_text_color: "Custom"
+#            text_color: "black"
+#            md_bg_color: (0.827, 0.827, 0.827, 0.5)
+
+#This is the Page that opens up to control the User Name and Contact Information As well as the App installation Date, Notification Preferences,
+<AccountInfoWindow>:
+    name: "Account Info Page"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDGridLayout:
+        cols:1
+
+        MDTopAppBar:
+            title: "Account Settings"
+            left_action_items: [["content-save-move", lambda x: app.save_switch_to_main_account()]]
+            right_action_items :[['', lambda x : app.secret_menu()]]
+            md_bg_color: app.secondary_color
+
+
+    MDCard:
+        size_hint: 1, 0.9
+        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+        md_bg_color: app.background_primary_color
+        ScrollView:
+            do_scroll_y: True
+            do_scroll_x: False
+
+
+            MDGridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+
+
+
+                MDGridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height:self.minimum_height
+                    padding: dp(10), dp(15),dp(10), dp(0)
+                    spacing:dp(15)
+                    MDLabel:
+                        text: '    User Details'
+                        theme_text_color: 'Custom'
+                        text_color: 'white'
+                        font_size: sp(12)
+                        pos_hint_y:{'center_y':0.9}
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    First Name'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDTextField:
+                                id: name_input
+                                mode: "fill"
+                                fill_color_normal: app.secondary_color
+                                fill_color_focus: app.secondary_color
+                                text_color_normal: "white"
+                                multiline : False
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    App Installation Date'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDLabel:
+                                id: app_installation_date
+                                text: 'April 23, 2024    '
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                halign: 'right'
+                                font_size: sp(16)
+
+
+
+                    MDSeparator:
+                        height: "3dp"
+                        color: 0,0,0,1
+                MDGridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(10), dp(15),dp(10), dp(0)
+                    spacing:dp(15)
+                    MDLabel:
+                        text: '    Notification Preferences'
+                        theme_text_color: 'Custom'
+                        text_color: 'white'
+                        font_size: sp(12)
+                        pos_hint_y:{'center_y':0.9}
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            size_hint_y:None
+                            height:dp(50)
+                            MDLabel:
+                                text: '    Notifications'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+                            AnchorLayout:
+                                anchor_x: "right"  # Align the MDSwitch to the right side
+                                anchor_y: "top"  # Align the MDSwitch to the center vertically
+                                padding: dp(0), dp(8),dp(35), dp(0)
+                                MDSwitch:
+                                    id: notification_switch
+                                    size_hint:None, None
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Phone Number'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDTextField:
+                                id: phone_input
+                                mode: "fill"
+                                fill_color_normal: app.secondary_color
+                                fill_color_focus: app.secondary_color
+                                text_color_normal: "white"
+
+                    MDSeparator:
+                        height: "3dp"
+                        color: 0,0,0,1
+
+                MDGridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(10), dp(15),dp(10), dp(100)
+                    spacing:dp(15)
+
+                    MDLabel:
+                        text: '    Notification Types'
+                        theme_text_color: 'Custom'
+                        text_color: 'white'
+                        font_size: sp(12)
+                        pos_hint_y:{'center_y':0.9}
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Rain-Open Window'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            AnchorLayout:
+                                anchor_x: "right"  # Align the MDSwitch to the right side
+                                anchor_y: "top"  # Align the MDSwitch to the center vertically
+                                padding: dp(0), dp(8),dp(35), dp(0)
+                                MDSwitch:
+                                    id: rain_switch
+                                    size_hint:None, None
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Advance Rain Alert'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+                                pos_hint: {'center_x': .5 , 'center_y': .5}
+                            AnchorLayout:
+                                anchor_x: 'right'
+                                anchor_y: 'center'
+                                padding: dp(0),dp(0),dp(15), dp(0)
+                                MDFlatButton:
+                                    id: rain_menu_button
+                                    text: '1 HR'
+                                    theme_text_color: "Custom"
+                                    text_color: "white"
+                                    on_release: app.open_rain_menu()
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Overnight Light Alert'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            AnchorLayout:
+                                anchor_x: "right"  # Align the MDSwitch to the right side
+                                anchor_y: "top"  # Align the MDSwitch to the center vertically
+                                padding: dp(0), dp(8),dp(35), dp(0)
+                                MDSwitch:
+                                    id: light_switch
+                                    size_hint:None, None
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Light Reminder Timer'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+                                pos_hint: {'center_x': .5 , 'center_y': .5}
+                            AnchorLayout:
+                                anchor_x: 'right'
+                                anchor_y: 'center'
+                                padding: dp(0),dp(0),dp(15), dp(0)
+                                MDFlatButton:
+                                    id: light_menu_button
+                                    text: '12 AM'
+                                    theme_text_color: "Custom"
+                                    text_color: "white"
+#                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    on_release: app.open_light_menu()
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Open Door Alert'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            AnchorLayout:
+                                anchor_x: "right"  # Align the MDSwitch to the right side
+                                anchor_y: "top"  # Align the MDSwitch to the center vertically
+                                padding: dp(0), dp(8),dp(35), dp(0)
+                                MDSwitch:
+                                    id: door_switch
+                                    size_hint:None, None
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Open Door Reminder'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+                                pos_hint: {'center_x': .5 , 'center_y': .5}
+                            AnchorLayout:
+                                anchor_x: 'right'
+                                anchor_y: 'center'
+                                padding: dp(0),dp(0),dp(15), dp(0)
+                                MDFlatButton:
+                                    id: door_menu_button
+                                    text: '1 HR'
+                                    theme_text_color: "Custom"
+                                    text_color: "white"
+#                                    pos_hint: {'center_x': .5, 'center_y': .5}
+                                    on_release: app.door_light_menu()
+
+
+
+
+
+
+
+<SecretWindow>:
+    name: 'secret menu'
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDGridLayout:
+        cols:1
+
+        MDTopAppBar:
+            title: "Secret Menu"
+            left_action_items: [["arrow-left-bold", lambda x: app.save_switch_to_main_secret()]]
+#            right_action_button :[['', lambda x : app.secret_menu()]]
+            md_bg_color: app.secondary_color
+
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+# This is the window that opens up to show us an array of different background themes in colors and possible different text color
+# there will be a proudly designed and correlated by Mehwish Malik stamp at the bottom of the page
+# 10 theme packs will be included with some future packs coming with updates.
+<BackgroundThemeWindow>:
+    name: "Background Page"
+    MDGridLayout:
+        id: grid_layout_check
+        canvas.before:
+            Color:
+                id:color_setting
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDGridLayout:
+        cols:1
+
+        MDTopAppBar:
+            title: "Theme Packs"
+            left_action_items: [["content-save-move", lambda x: app.save_switch_to_main_theme()]]
+            md_bg_color: app.secondary_color
+            do_scroll_y: True
+            do_scroll_x: False
+
+        MDFloatLayout:
+            cols:1
+            MDCard:
+                size_hint: 0.9, 0.9
+                pos_hint: {'center_x':0.5, 'center_y': 0.5}
+                md_bg_color: app.background_primary_color
+
+                ScrollView:
+
+                    MDGridLayout:
+                        cols: 1
+                        size_hint_y: None
+                        height: self.minimum_height
+                        size_hint_x: 1
+                        padding: dp(0), dp(18), dp(0), dp(0)
+                        spacing: dp(15)
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Default")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Default"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"Default svg.png"
+                                        font_size: sp(80)
+
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Midnight")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Midnight"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"Midnight svg.png"
+                                        font_size: sp(80)
+
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Sunset")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Sunset"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"Sunset svg.png"
+                                        font_size: sp(80)
+
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Light Mode")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Sunny Days"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"Light Mode svg.png"
+                                        font_size: sp(80)
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Sunny Days")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Dark Mode"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"sunny days svg.png"
+                                        font_size: sp(80)
+
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Meadow")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Meadow"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"medow svg.png"
+                                        font_size: sp(80)
+
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Hogwarts")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Hogwarts"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"hogwarts svg.png"
+                                        font_size: sp(80)
+
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Forest")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Forest"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"forest svg.png"
+                                        font_size: sp(80)
+
+                        MDCard:
+                            md_bg_color: app.secondary_color
+                            size_hint_y: None
+                            height: dp(100)
+                            size_hint_x: 0.8
+                            on_release: app.switch_theme("Sea")
+                            MDGridLayout:
+                                cols: 2
+                                AnchorLayout:
+                                    anchor_x: "left"
+                                    anchor_y: "center"
+                                    padding: dp(15), dp(0), dp(0), dp(0)
+                                    MDLabel:
+                                        text: "Sea"
+                                        theme_text_color: "Custom"
+                                        text_color: app.text_color_secondary
+
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    #anchor_y: "center"
+                                    padding: dp(0), dp(0), dp(0), dp(0)
+                                    MDIcon:
+                                        icon:"sea svg.png"
+                                        font_size: sp(80)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# this page you will be able to change the ip address used for both servers and more if applicable as well as see if there is any error codes that come along possible maybe a mdcard showing the date and time of the possible dosconnection from the server and maybe the error that came in the form as a text
+<ServerConnectionWindow>:
+    name: "Server Connection Page"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDGridLayout:
+        cols:1
+
+        MDTopAppBar:
+            title: "Server Settings"
+            left_action_items: [["content-save-move", lambda x: app.save_switch_to_main_server()]]
+            md_bg_color: app.secondary_color
+
+
+    MDCard:
+        size_hint: 1, 0.9
+        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+        md_bg_color: app.background_primary_color
+        ScrollView:
+            do_scroll_y: True
+            do_scroll_x: False
+
+
+            MDGridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+
+
+
+                MDGridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height:self.minimum_height
+                    padding: dp(10), dp(15),dp(10), dp(0)
+                    spacing:dp(15)
+                    MDLabel:
+                        text: '    Servers Info'
+                        theme_text_color: 'Custom'
+                        text_color: 'white'
+                        font_size: sp(12)
+                        pos_hint_y:{'center_y':0.9}
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Server Ip'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDTextField:
+                                id: server_ip_info
+                                mode: "fill"
+                                fill_color_normal: app.secondary_color
+                                fill_color_focus: app.secondary_color
+                                text_color_normal: "white"
+                                multiline : False
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Light Server Port'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDTextField:
+                                id: light_port_info
+                                mode: "fill"
+                                fill_color_normal: app.secondary_color
+                                fill_color_focus: app.secondary_color
+                                text_color_normal: "white"
+                                multiline : False
+
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Sensor Server Port'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDTextField:
+                                id: sensor_port_info
+                                mode: "fill"
+                                fill_color_normal: app.secondary_color
+                                fill_color_focus: app.secondary_color
+                                text_color_normal: "white"
+                                multiline : False
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Preferences Server Port'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDTextField:
+                                id: preferences_port_info
+                                mode: "fill"
+                                fill_color_normal: app.secondary_color
+                                fill_color_focus: app.secondary_color
+                                text_color_normal: "white"
+                                multiline : False
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Sending Server Port'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDTextField:
+                                id: sending_port_info
+                                mode: "fill"
+                                fill_color_normal: app.secondary_color
+                                fill_color_focus: app.secondary_color
+                                text_color_normal: "white"
+                                multiline : False
+
+
+
+
+
+
+
+
+
+
+
+# this page will allow you to be able to view who was there to help for example signed by both Sajida Malik (Program Director) and Asher Malik (Cheif Programmer) and Mehwish Malik (Cheif Designer)
+# It will also include a breif Paragraph Telling how the program came together (Mission Statement)
+# There will also be a how it was built to explain the systems behind how the sensors work and how the servers work together to broadcast the information to you.
+# version information will also be included
+<AboutWindow>:
+    name: "About Page"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+# This will provide with the contact phone number 9292131767 and the email address that ive made special for this project.
+# hours of avalability
+# Physical address
+<ContactUsWindow>:
+    name: "Contact Us Page"
+    MDGridLayout:
+        canvas.before:
+            Color:
+                rgba: app.background_primary_color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDGridLayout:
+        cols:1
+
+        MDTopAppBar:
+            title: "Contact Us"
+            left_action_items: [["content-save-move", lambda x: app.save_switch_to_main_contact()]]
+            md_bg_color: app.secondary_color
+
+    MDCard:
+        size_hint: 1, 0.9
+        pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+        md_bg_color: app.background_primary_color
+        ScrollView:
+            do_scroll_y: True
+            do_scroll_x: False
+
+
+            MDGridLayout:
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+
+
+
+                MDGridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height:self.minimum_height
+                    padding: dp(10), dp(15),dp(10), dp(0)
+                    spacing:dp(15)
+                    MDLabel:
+                        text: '    Contact Information'
+                        theme_text_color: 'Custom'
+                        text_color: 'white'
+                        font_size: sp(12)
+                        pos_hint_y:{'center_y':0.9}
+
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                text: '    Phone Number'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDLabel:
+                                id: app_installation_date
+                                text: '929-213-1767    '
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                halign: 'right'
+                    MDCard:
+                        size_hint_x: 0.8
+                        size_hint_y:None
+                        height: dp(50)
+                        md_bg_color: app.secondary_color
+                        MDGridLayout:
+                            cols: 2
+                            MDLabel:
+                                size_hint_x: 0.4
+                                text: '    Email Info'
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                font_size: sp(16)
+
+                            MDLabel:
+                                size_hint_x: 0.6
+                                text: 'ashermalik927@gmail.com  '
+                                theme_text_color: "Custom"
+                                text_color: "white"
+                                halign: 'right'
+
+
+
+
+
+
+
