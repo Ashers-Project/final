@@ -1,5 +1,6 @@
 import threading
 from kivy.lang import Builder
+from kivy.properties import ListProperty
 from kivymd.app import MDApp
 # To set the reference size to your display
 # Used in the .kv file
@@ -25,22 +26,14 @@ from kivy.clock import mainthread
 import requests
 import ast
 from datetime import datetime
+from os import environ
 
 #ghghgh
 print(platform)
 # Getting ip information
 
-ip_information  =  open(self.user_data_dir + "server info.zyon", "r")
-read_ip_information = ip_information.readlines()
+user_data_dir = environ.get('USER_DIR', '/Documents')
 
-light_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[1].strip())
-sensor_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[2].strip())
-sending_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[4].strip())
-prefrences_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[3].strip())
-ip_information.close()
-
-print(light_url)
-print(sensor_url)
 # # url for light server
 # light_url = "http://74.105.96.160:2222"
 # # url for sensor server
@@ -81,8 +74,20 @@ class Zyon(MDApp):
     rel_y1 = 998 / 1013
     rel_x2 = 101 / 651
     rel_y2 = 998 / 1013
+    ip_information = open(user_data_dir + "server info.zyon", "r")
+    read_ip_information = ip_information.readlines()
 
-    current_theme = open(self.user_data_dir + "theme_pack.zyon", "r")
+    light_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[1].strip())
+    sensor_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[2].strip())
+    sending_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[4].strip())
+    prefrences_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[3].strip())
+    ip_information.close()
+
+    print(light_url)
+    print(sensor_url)
+    # backgroundcolour = [0, 0, 1, 1]
+
+    current_theme = open(user_data_dir + "theme_pack.zyon", "r")
     current_read_theme = current_theme.readlines()
     primary_color = ast.literal_eval(current_read_theme[0])
     secondary_color = ast.literal_eval(current_read_theme[1])
@@ -93,14 +98,47 @@ class Zyon(MDApp):
     # secondary_text_color = ast.literal_eval(current_read_theme[5])
     # background_secondary_color = ast.literal_eval(current_read_theme[3])
     print(primary_color)
+    # primary_color = ListProperty()
+    # secondary_color = ListProperty()
+    # background_primary_color = ListProperty()
+    # text_color_primaryy = ListProperty()
+    # text_color_secondary = ListProperty()
+    # secondary_color = ListProperty()
+    # background_primary_color = ListProperty()
+    # text_color_primaryy  = ListProperty()
+    # text_color_secondary = ListProperty()
+
+    # primary_color = ListProperty()
     # 82/255, 208/255, 236/255, 1 this is the color of the blue active lights
     # 6/255, 18/255, 59/255, 1 basic background color
 
     # backgroundcolour = ast.literal_eval(current_read_theme[0])
     # primary_color = 6/255, 18/255, 59/255, 1
     def on_start(self):
-        # backgroundcolour = [0, 0, 1, 1]
-
+        # ip_information = open(self.user_data_dir +"server info.zyon", "r")
+        # read_ip_information = ip_information.readlines()
+        #
+        # self.light_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[1].strip())
+        # self.sensor_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[2].strip())
+        # self.sending_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[4].strip())
+        # self.prefrences_url = "http://" + str(read_ip_information[0].strip()) + ":" + str(read_ip_information[3].strip())
+        # ip_information.close()
+        #
+        # print(self.light_url)
+        # print(self.sensor_url)
+        # # backgroundcolour = [0, 0, 1, 1]
+        #
+        # self.current_theme = open(self.user_data_dir +"theme_pack.zyon", "r")
+        # self.current_read_theme = self.current_theme.readlines()
+        # self.primary_color = ast.literal_eval(self.current_read_theme[0])
+        # self.secondary_color = ast.literal_eval(self.current_read_theme[1])
+        # self.background_primary_color = ast.literal_eval(self.current_read_theme[2])
+        # self.text_color_primaryy = str(self.current_read_theme[3]).strip("\n")
+        # self.text_color_secondary = str(self.current_read_theme[4]).strip("\n")
+        # # icon_color = ast.literal_eval(current_read_theme[4])
+        # # secondary_text_color = ast.literal_eval(current_read_theme[5])
+        # # background_secondary_color = ast.literal_eval(current_read_theme[3])
+        # print(self.primary_color)
         self.iphonemapscreen = "Map View"
         self.mainscreen = "Main Window"
         self.accountscreen = "Account Info Screen"
@@ -298,7 +336,7 @@ class Zyon(MDApp):
         print("Starting Server For Lights")
         while True:
             try:
-                lights_data = requests.get(light_url)
+                lights_data = requests.get(self.light_url)
                 l_data = lights_data
                 self.set_light(l_data)
 
@@ -310,7 +348,7 @@ class Zyon(MDApp):
         while True:
             try:
 
-                sensor_data = requests.get(sensor_url)
+                sensor_data = requests.get(self.sensor_url)
                 s_data = sensor_data
                 self.set_sensor(s_data)
                 print("worked")
